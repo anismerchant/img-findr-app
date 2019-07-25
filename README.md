@@ -2,18 +2,18 @@
 
 In progress...
 
-## Overview: Work Orders App
+## Overview: Image Finder App
 An image finder application that searches for random images using the Unsplash API.
 
 Features Completed
 * Display randomly returned images
 * Display metadata beneath each image
 * Search filter to query the subject matter of the image
+* Open higher resolution image in a new tab when displayed image is clicked 
 
 Features in Progress
 * Toggle button to fetch either featured or not featured images
 * Drop-down menu to specify orientation of images: portrait, landscape, or squarish
-* Open higher resolution image in a new tab when displayed image is clicked 
 
 Try it out as I build it out: https://bit.ly/2SApDZg
 **please wait about 15 seconds for the servers to spin up.

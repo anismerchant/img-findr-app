@@ -1,33 +1,80 @@
+@import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+/* Custom CSS */
+
+.ant-input-search-container {
+  margin-top: 2.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ant-switch-inner {
+  width: 4rem;
+}
+
+.ant-switch::after {
+  width: 3.2rem;
+}
+
+.ant-input-search.ant-input-affix-wrapper {
+  width: 95%;
+}
+
+.ant-input-search.ant-input-affix-wrapper input {
+  border-radius: 1.125rem;
+  height: 4rem;
+}
+
+.ant-input-search.ant-input-affix-wrapper input[type="text"] {
+  font-size: 1.5rem;
+}
+
+.anticon.anticon-search.ant-input-search-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.ant-switch-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin-top: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.ant-switch-container h3 {
+  margin: 0.125rem 0;
+  padding: 0 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  color: #c6bebe;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ant-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 0;
+}
+
+.ant-card.ant-card-bordered {
+  width: 300px; 
+  margin-top: 1.5rem;
+  border: 1px solid #c6bebe;
+}
+
+.ant-card-body {
+  padding-right: 12px;
+  padding-bottom: 0;
+}
+
+h4 {
+  font-weight: 400;
+}
+
+button {
+  display: 'block'
 }

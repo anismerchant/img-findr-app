@@ -60,7 +60,6 @@ class Display extends Component {
   queryOrientation = (param = '') => {
     fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&orientation=${param}`)
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(data => {

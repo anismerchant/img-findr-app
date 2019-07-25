@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { BackTop, Input, Switch } from 'antd'
-import { getPhotos, setPhotoDescFilter } from '../actions'
+import { getPhotos, setPhotoDescFilter, getNotFeatured, getFeatured  } from '../actions'
 import { API_ENDPOINT, API_ACCESS_KEY, QUERY_STRING, PARAMETER } from '../api'
 import { findPhoto } from '../selectors'
 import Card from './Card'
@@ -32,16 +32,29 @@ class Display extends Component {
     })
   }
 
-  // TODO: Toggle between featured and not featured
+  toggleFeatured = () => {
+    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&${this.props.filters.sortBy}`)
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(data => {
+      return this.props.getPhotos({ data })
+    })
+  }
+
+  // Toggle between featured and not featured
   onSwitch = checked => {
     this.setState(() => ({ loading: !checked }))  
 
     const featured = document.getElementById('featured')
-    if (featured.getAttribute('aria-checked') === 'true') {
-      this.props.getNotFeatured()
-    }
     if (featured.getAttribute('aria-checked') === 'false') {
+      this.props.getNotFeatured()
+      this.toggleFeatured()
+    }
+    if (featured.getAttribute('aria-checked') === 'true') {
       this.props.getFeatured()
+      this.toggleFeatured()
     }
   };
 
@@ -84,7 +97,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getPhotos: (payload) => dispatch(getPhotos(payload)),
-  setPhotoDescFilter: (payload) => dispatch(setPhotoDescFilter(payload))
+  setPhotoDescFilter: (payload) => dispatch(setPhotoDescFilter(payload)),
+  getNotFeatured: () => dispatch(getNotFeatured()),
+  getFeatured: () => dispatch(getFeatured())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Display)

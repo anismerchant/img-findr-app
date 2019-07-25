@@ -2,7 +2,7 @@ import { SET_PHOTO_DESC_FILTER, NOT_FEATURED, FEATURED } from '../actions/types'
 
 const filtersReducerDefaultState = {
   descLookup: '',
-  sortBy: 'notFeatured'
+  sortBy: 'Featured'
 }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {

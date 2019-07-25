@@ -11,8 +11,6 @@ Features Completed
 * Search filter to query the subject matter of the image
 * Open higher resolution image in a new tab when displayed image is clicked
 * Toggle button to fetch either featured or not featured images 
-
-Features in Progress
 * Drop-down menu to specify orientation of images: portrait, landscape, or squarish
 
 Try it out as I build it out: https://bit.ly/2SApDZg

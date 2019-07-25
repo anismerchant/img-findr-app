@@ -27,13 +27,14 @@ class Display extends Component {
   // Display Photo Details
   displayCard = () => {
     if(!this.props.displayCard.length) return
-    return this.props.displayCard.map(photo => {
-      return <Card key={photo.id} {...photo}/>
+    return this.props.displayCard.map((photo,index) => {
+      return <Card key={photo.id+index} {...photo}/>
     })
   }
 
-  toggleFeatured = () => {
-    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&${this.props.filters.sortBy}`)
+  // Toggle between featured and not featured
+  toggleFeatured = (param = '') => {
+    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&${param}`)
     .then(response => {
       console.log(response)
       return response.json()
@@ -43,14 +44,13 @@ class Display extends Component {
     })
   }
 
-  // Toggle between featured and not featured
   onSwitch = checked => {
     this.setState(() => ({ loading: !checked }))  
 
     const featured = document.getElementById('featured')
     if (featured.getAttribute('aria-checked') === 'false') {
       this.props.getNotFeatured()
-      this.toggleFeatured()
+      this.toggleFeatured(this.props.filters.sortBy)
     }
     if (featured.getAttribute('aria-checked') === 'true') {
       this.props.getFeatured()

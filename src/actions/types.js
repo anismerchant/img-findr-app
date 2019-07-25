@@ -1,0 +1,4 @@
+export const GET_PHOTOS = 'GET_PHOTOS'
+export const SET_PHOTO_DESC_FILTER = 'SET_PHOTO_DESC_FILTER'
+export const NOT_FEATURED = 'NOT_FEATURED'
+export const FEATURED = 'FEATURED'

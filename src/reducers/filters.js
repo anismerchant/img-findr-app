@@ -1,8 +1,10 @@
-import { SET_PHOTO_DESC_FILTER, NOT_FEATURED, FEATURED } from '../actions/types'
+import { SET_PHOTO_DESC_FILTER, NOT_FEATURED, FEATURED, 
+        PORTRAIT, LANDSCAPE, SQUARISH} from '../actions/types'
 
 const filtersReducerDefaultState = {
   descLookup: '',
-  sortBy: 'Featured'
+  sortBy: 'featured',
+  orientation: ''
 }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -21,6 +23,21 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
       return {
         ...state,
         sortBy: 'featured'
+      }
+    case PORTRAIT:
+      return {
+        ...state,
+        orientation: 'portrait'
+      }
+    case LANDSCAPE:
+      return {
+        ...state,
+        orientation: 'landscape'
+      }
+    case SQUARISH:
+      return {
+        ...state,
+        orientation: 'squarish'
       }
     default:
       return state;

@@ -66,6 +66,12 @@
   border: 1px solid #c6bebe;
 }
 
+.ant-card-meta-description {
+  padding-bottom: 0.8rem;
+  color: rgb(65, 60, 60);
+  font-weight: 500;
+}
+
 .ant-card-body {
   padding-right: 12px;
   padding-bottom: 0;

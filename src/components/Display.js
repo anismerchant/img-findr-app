@@ -36,7 +36,6 @@ class Display extends Component {
   toggleFeatured = (param = '') => {
     fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&${param}`)
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(data => {

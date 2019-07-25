@@ -77,6 +77,12 @@
   padding-bottom: 0;
 }
 
+.ant-dropdown-menu {
+  margin-top: 1rem;
+  width: 20rem;
+  border-radius: 2rem;
+}
+
 h4 {
   font-weight: 400;
 }

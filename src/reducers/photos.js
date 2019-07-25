@@ -5,11 +5,7 @@ const photosDefaultState = []
 const photosReducer = (state = photosDefaultState, action) => {
   switch (action.type) {
     case GET_PHOTOS: 
-      return [
-        ...state,
-        ...action.data
-      ] 
-
+      return [...action.data]
     default:
       return state
   }

@@ -6,7 +6,7 @@ import { getPhotos, setPhotoDescFilter, getNotFeatured, getFeatured,
          getPortrait, getLandscape, getSquarish } from '../actions'
 import { API_ENDPOINT, API_ACCESS_KEY, QUERY_STRING, PARAMETER } from '../api'
 import { findPhoto } from '../selectors'
-import Card from './Card'
+import Container from './Container'
 
 class Display extends Component {
   state = {
@@ -28,9 +28,9 @@ class Display extends Component {
   displayCard = () => {
     if(!this.props.displayCard.length) return
     return this.props.displayCard.map((photo,index) => {
-      return <Card key={photo.id+index} {...photo}/>
+      return <Container key={photo.id+index} {...photo}/>
     })
-  }
+  } 
 
   // Toggle between featured and not featured
   toggleFeatured = (param = '') => {

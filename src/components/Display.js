@@ -4,7 +4,8 @@ import axios from 'axios'
 import { BackTop, Input, Switch } from 'antd'
 import { getPhotos, setPhotoDescFilter, getNotFeatured, getFeatured,
          getPortrait, getLandscape, getSquarish } from '../actions'
-import { API_ENDPOINT, API_ACCESS_KEY, QUERY_STRING, PARAMETER } from '../api'
+import { API_ENDPOINT, API_ACCESS_KEY, CONNECTOR, 
+         QUERY_STRING, QUERY_SELECTOR, PARAMETER } from '../api'
 import { findPhoto } from '../selectors'
 import Container from './Container'
 
@@ -15,7 +16,7 @@ class Display extends Component {
 
   // Api call
   async componentDidMount() {
-    const photoDetails = await axios.get(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}`)
+    const photoDetails = await axios.get(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${CONNECTOR}${PARAMETER}`)
     this.props.getPhotos({ data: photoDetails.data })
   }
 
@@ -32,13 +33,15 @@ class Display extends Component {
     })
   } 
 
-  // Toggle between featured and not featured
-  toggleFeatured = (param = '') => {
-    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&${param}`)
+  // Build query 
+  queryOption = (param = '', query_selector='') => {
+    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${CONNECTOR}${PARAMETER}${CONNECTOR}${query_selector}${param}`)
     .then(response => {
+      console.log(response)
       return response.json()
     })
     .then(data => {
+      console.log(data)
       return this.props.getPhotos({ data })
     })
   }
@@ -49,34 +52,24 @@ class Display extends Component {
     const featured = document.getElementById('featured')
     if (featured.getAttribute('aria-checked') === 'false') {
       this.props.getNotFeatured()
-      this.toggleFeatured(this.props.filters.sortBy)
+      this.queryOption(this.props.filters.sortBy)
     }
     if (featured.getAttribute('aria-checked') === 'true') {
       this.props.getFeatured()
-      this.toggleFeatured()
+      this.queryOption()
     }
-  }
-
-  queryOrientation = (param = '') => {
-    fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${PARAMETER}&orientation=${param}`)
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      return this.props.getPhotos({ data })
-    })
   }
 
   changeOrientation = (e) => {
     if (e.target.value === "portrait") {
         this.props.getPortrait()
-        this.queryOrientation(e.target.value)
+        this.queryOption(e.target.value, QUERY_SELECTOR)
     } else if (e.target.value === "landscape") {
         this.props.getLandscape()
-        this.queryOrientation(e.target.value)
+        this.queryOption(e.target.value, QUERY_SELECTOR)
     } else if (e.target.value === "squarish") {
         this.props.getSquarish()
-        this.queryOrientation(e.target.value)
+        this.queryOption(e.target.value, QUERY_SELECTOR)
     } 
   }
 

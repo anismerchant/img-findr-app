@@ -34,14 +34,12 @@ class Display extends Component {
   } 
 
   // Build query 
-  queryOption = (param = '', query_selector='') => {
+  queryOption = (param = '', query_selector = '') => {
     fetch(`${API_ENDPOINT}${QUERY_STRING}${API_ACCESS_KEY}${CONNECTOR}${PARAMETER}${CONNECTOR}${query_selector}${param}`)
     .then(response => {
-      console.log(response)
       return response.json()
     })
     .then(data => {
-      console.log(data)
       return this.props.getPhotos({ data })
     })
   }
